@@ -1,0 +1,171 @@
+@charset "utf-8";
+@import "base/_base_setting";
+
+$fontfamily: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "Hiragino Kaku Gothic Pro", "メイリオ", Roboto, Meiryo, sans-serif;
+
+$fontfamily_serif: "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "小塚明朝 ProN", "メイリオ", Meiryo, serif;
+
+* {
+	font-family: $fontfamily;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.75;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+	// -moz-font-smoothing: antialiased;
+    // -webkit-font-smoothing: antialiased;
+    @media screen and (max-width : 540px){
+        font-size: 14px;
+    }
+}
+.block-editor-default-block-appender textarea.block-editor-default-block-appender__content {
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+.block-editor-block-list__empty-block-inserter .block-editor-inserter__toggle:not(:hover):not(:focus),
+.block-editor-default-block-appender .block-editor-inserter .block-editor-inserter__toggle:not(:hover):not(:focus) {
+	color: inherit;
+}
+
+// メインのカラム幅
+//-------------------------
+// 左右に15pxのpaddingがあるので、コンテンツは720px-30px
+.wp-block {
+    max-width: 720px;
+}
+//「幅広」ブロックの幅、コンテンツは1080px-30px
+.wp-block[data-align="wide"] {
+    max-width: 1080px;
+}
+//「全幅」ブロックの幅
+.wp-block[data-align="full"] {
+    max-width: none;
+}
+
+/* Font Families ------------------------------ */
+
+
+
+.editor-post-title__block .editor-post-title__input,
+.editor-styles-wrapper .wp-block h1,
+.editor-styles-wrapper .wp-block h2,
+.editor-styles-wrapper .wp-block h3,
+.editor-styles-wrapper .wp-block h4,
+.editor-styles-wrapper .wp-block h5,
+.editor-styles-wrapper .wp-block h6,
+.editor-styles-wrapper .has-drop-cap:not(:focus)::first-letter,
+.editor-styles-wrapper cite,
+.editor-styles-wrapper figcaption,
+.editor-styles-wrapper .wp-caption-text {
+    font-family: $fontfamily;
+    word-break: break-all; 
+}
+
+.editor-styles-wrapper .editor-post-title__block .editor-post-title__input {
+	margin: 0;
+}
+
+.wp-block {
+    a {
+        color: #3f729b;
+    }
+}
+
+
+
+
+// heading text
+//-------------------------
+
+    h1,h2,h3,h4 {
+        font-weight: 700;
+        br {
+            @media screen and (max-width : 767px){
+                display: none;
+            }
+        }
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.6rem;
+    }
+    h3 {
+        font-size: 1.3rem;
+    }
+    h4 {
+        font-size: 1rem;
+    }
+    h5 {
+        font-size: 1rem;
+    }
+    h6 {
+        font-size: 1rem;
+    }
+    p,
+    ol,
+    ul,
+    dl,
+    dt {
+        font-family: $fontfamily;
+        letter-spacing: normal;
+    }
+    .has-drop-cap:not(:focus)::first-letter {
+        font-size: 2.5em;
+        margin: 0.15em 0.1em 0 0;
+    }
+    strong {
+        font-weight: bold;
+    }
+
+
+/* Custom Text Sizes ------------------------- */
+
+p.has-small-font-size {
+	font-size: 0.842rem!important;
+}
+p.has-normal-font-size,
+p.has-regular-font-size {
+	font-size: 1rem!important;
+}
+
+p.has-medium-font-size {
+    font-size: 1.2rem!important;
+    line-height: 1.65;
+}
+p.has-large-font-size {
+    font-size: 1.4rem!important;
+    line-height: 1.5;
+}
+p.has-huge-font-size {
+    font-size: 1rem!important;
+}
+
+
+
+
+/* Code ------------------------- */
+.wp-block-code {
+    background: #f6f6f6;
+    .block-editor-plain-text {
+        border-color: #dcd7ca;
+        border-radius: 0;
+        line-height: 1.5;
+        padding: 0;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #f6f6f6;
+        font-size: 14px;
+        font-family: monospace;
+    }
+}
+
+/* layout ------------------------- */
+.block-library-spacer__resize-container {
+    height: 2em!important;
+}

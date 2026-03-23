@@ -1,0 +1,161 @@
+<?php get_header() ; ?>
+
+<?php if (have_posts()) : ?>
+    <?php while ( have_posts() ) : the_post(); ?>
+
+        <main class="c_single_wrap rentacar">
+            <div class="l_1 l_side">
+
+                <div class="flex c_single_01">
+                    <div class="c_l">
+                        <?php
+                        $car_img__group = get_field('rentacar_img__group');
+                        if( $car_img__group ): ?>
+                            <ul class="carimg_slider">
+                                <?php
+                                for($i=1;$i<=5;$i++) {
+                                    $img_value = 'rentacar_img'.$i.'' ;
+                                    if ( $car_img__group[$img_value] ) {
+                                        echo '<li class="carimg_thumb' . $i . '">';
+                                        $attachment_id = $car_img__group[$img_value];
+                                        echo wp_get_attachment_image( $attachment_id, "full", false, array( 'class'=>'cars_img__lrg carimg_thumb' . $i ));
+                                        echo '</li>';
+                                    }else {
+                                        break;
+                                    }
+                                }
+                                ?>
+                            </ul>
+                            <ul class="carimg_slider__thumb">
+                                <?php
+                                for($i=1;$i<=5;$i++) {
+                                    $img_value = 'rentacar_img'.$i.'' ;
+                                    if ( $car_img__group[$img_value] ) {
+                                        echo '<li class="thumb' . $i . '">';
+                                        $attachment_id = $car_img__group[$img_value];
+                                        echo wp_get_attachment_image( $attachment_id, "thumbnail", false, array( 'class'=>'cars_img__thumbnail' ));
+                                        echo '</li>';
+                                    }else {
+                                        break;
+                                    }
+                                }
+                                ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                    <div class="c_r">
+                        <div class="c_r__col rentacar">
+                            <?php
+                            $cars_store = get_field_object('rentacars_store');
+                            $cars_store__value = $cars_store['value'];
+                            $cars_store__label = $cars_store['choices'][ $cars_store__value ];
+                            ?>
+                            <h2 class="fz_20"><?php the_title(); ?></h2>
+                            <?php
+                            $rentacar_price__group = get_field('rentacar_price__group');
+                            $rentacars_timeprice = $rentacar_price__group['rentacars_timeprice'];
+                            $rentacars_dayprice = $rentacar_price__group['rentacars_dayprice'];
+                            $rentacars_weeklyprice = $rentacar_price__group['rentacars_weeklyprice'];
+                            $rentacars_monthlyprice = $rentacar_price__group['rentacars_monthlyprice'];
+                            $rentacars_insprice = $rentacar_price__group['rentacars_insprice'];
+                            if( $rentacar_price__group ):?>
+                                <div class="rent_annualPrice single">
+                                    <div class="wrap">
+                                        <?php if( $rentacars_timeprice ):?>
+                                            <h4 class="fz_36 timely_price"><?php echo number_format($rentacars_timeprice); ?><span>円 / 時間(税込)</span></h4>
+                                        <?php endif; ?>
+                                        <?php if( $rentacars_dayprice ):?>
+                                            <p class="fz_18 dairy_price"><span><?php echo number_format($rentacars_dayprice); ?></span>円 / 24時間(税込)</p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php if( $rentacars_weeklyprice ) {
+                                        echo '<p class="fz_18 weekly_price"><span>' . number_format($rentacars_weeklyprice) . '</span>円 / 1週間(税込)</p>';
+                                    } else {
+                                        if( $rentacars_dayprice ) {
+                                            $weekly_price = (($rentacars_dayprice * 7) * 0.8);
+                                            echo '<p class="fz_18 weekly_price"><span>' . number_format($weekly_price) . '</span>円 / 1週間(税込)</p>';
+                                        }
+                                    }
+                                    ?>
+                                    <?php if( $rentacars_monthlyprice ) {
+                                        echo '<p class="fz_18 weekly_price"><span>' . number_format($rentacars_monthlyprice) . '</span>円 / 1ヶ月(税込)</p>';
+                                    } else {
+                                        if( $rentacars_dayprice ) {
+                                            $monthly_price = (($rentacars_dayprice * 30) * 0.5);
+                                            echo '<p class="fz_18 weekly_price"><span>' . number_format($monthly_price) . '</span>円 / 1ヶ月(税込)</p>';
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php if( $rentacars_insprice ):?>
+                                        <p class="fz_14 insprice">基本保険料(対人・対物保険) <span><?php echo number_format($rentacar_price__group['rentacars_insprice']); ?></span>円 / 1日(非課税)</p>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="fz_14 rentacars_highseason">
+                                <p>※ 4/25〜5/6、7/25〜8/25、12/24〜1/4の期間はハイシーズン料金が適用となります。</p>
+                            </div>
+
+                            <div class="c_single_06">
+                                <?php if(get_field('rentacars_salespoint')): ?>
+                                    <div class="point clearfix">
+                                        <div class="fz_15 point_cont"><?php the_field('rentacars_salespoint', $post->ID); ?></div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <?php $rentacars_status = get_field('rentacars_status');?>
+                            <div class="c_single_07">
+                                <?php if($rentacars_status === 'on' ): ?>
+                                    <?php
+                                    $rentacars_deliver = get_field_object('rentacars_deliver');
+                                    $rentacars_deliver__value = $rentacars_deliver['value'];
+                                    $rentacars_deliver__label = $rentacars_deliver['choices'][ $rentacars_deliver__value ];
+                                    ?>
+                                    <?php if($cars_store__value === '1' ): ?>
+                                        <?php
+                                        echo '<a href="' . home_url('/') . 'rentacarform.html?store=福岡店&car_name=' . get_the_title() . '" class="fz_18 rent_btn"><strong>店舗</strong>でのレンタル・お申込み</a>';
+                                        ?>
+                                        <?php if($rentacars_deliver__value === '2' ): ?>
+                                            <?php
+                                            echo '<a href="' . home_url('/') . 'rentacar_delivery__form.html?store=福岡店&car_name=' . get_the_title() . '" class="fz_18 rent_btn deliver"><strong>宅配</strong>でのレンタル・お申込み</a>';
+                                            ?>
+                                        <?php endif; ?>
+                                        <a href="https://lin.ee/TXVifoQ" class="fz_18 rent_btn line"><strong>LINE</strong>でのレンタルお申し込み</a>
+                                    <?php elseif($cars_store__value === '3' ): ?>
+                                        <?php
+                                        echo '<a href="' . home_url('/') . 'rentacarform.html?store=TOKYO店&car_name=' . get_the_title() . '" class="fz_18 rent_btn"><strong>店舗</strong>でのレンタル・お申込み</a>';
+                                        ?>
+                                        <?php if($rentacars_deliver__value === '2' ): ?>
+                                            <?php
+                                            echo '<a href="' . home_url('/') . 'rentacar_delivery__form.html?store=TOKYO店&car_name=' . get_the_title() . '" class="fz_18 rent_btn deliver"><strong>宅配</strong>でのレンタル・お申込み</a>';
+                                            ?>
+                                        <?php endif; ?>
+                                        <a href="https://lin.ee/aKH7jrY" class="fz_18 rent_btn line"><strong>LINE</strong>でのレンタルお申し込み</a>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <span class="fz_18 rent_btn noservice">現在レンタルできません。</span>
+                                <?php endif; ?>
+
+                                <?php if($cars_store__value === '1' ): ?>
+                                    <p class="fz_14 tel">お電話でのお問い合わせ<a href="tel:<?=$GLOBALS['shop_gloval_var']['fukuoka']['rentcar']?>" class="fz_24"><?=$GLOBALS['shop_gloval_var']['fukuoka']['rentcar-']?></a></p>
+                                    <div class="fz_14 c_single_08">
+                                        <h5 class="fz_16 storettl">カーライフ福岡店</h5>
+                                        <p>福岡県糟屋郡粕屋町大字戸原789番地4 <br>平日：10:00～18:00　日祭日：10:00～18:00 <br>定休日：年中無休 (但しお盆、年末年始を除く)</p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+    <?php endwhile; ?>
+<?php endif; ?>
+
+
+<?php get_footer() ; ?>

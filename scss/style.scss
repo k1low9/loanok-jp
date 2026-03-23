@@ -1,0 +1,61 @@
+@charset "utf-8";
+@import "core/_mixin.scss";
+@import "base/_base_setting";
+@import "base/_font_setting";
+
+/*-----------------------------------------------
+--layout
+-----------------------------------------------*/
+
+.l_1{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    box-sizing: border-box;
+    //position: relative;
+    &.l_side {
+        max-width: calc(1100px + 10%);
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+    &.l_side_25 {
+        max-width: calc(960px + 10%);
+        padding-right: 2.5%;
+        padding-left: 2.5%;
+    }
+    &.car_list__wrap {
+        max-width: 1600px;
+        justify-content: space-between;
+        &.inifis {
+            padding-bottom: 40px;
+        }
+    }
+    &.wht {
+        background: #fff;
+    }
+    &.mx_1440 {
+        max-width: 1440px;
+    }
+}
+
+/*-----------------------------------------------
+--header
+-----------------------------------------------*/
+@import "parts/_header.scss";
+@import "parts/_sidr.scss";
+/*-----------------------------------------------
+--page
+-----------------------------------------------*/
+@import "page/_page.scss";
+
+/*-----------------------------------------------
+--form
+-----------------------------------------------*/
+@import "page/_contact.scss";
+
+/*-----------------------------------------------
+--footer
+-----------------------------------------------*/
+@import "parts/_footer.scss";
+

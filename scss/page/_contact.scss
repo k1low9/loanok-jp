@@ -1,0 +1,672 @@
+@charset "utf-8";
+@import "../core/_mixin.scss";
+@import "../base/_base_setting";
+
+/*-- contact --*/
+.contact_footer {
+    background: #fff;
+    padding: 5% 0;
+    //margin-top: 5%;
+    a {
+        text-decoration: none;
+        color: #4C4948;
+        border-bottom: 1px dotted #000;
+        padding-bottom: .2em;
+    }
+    .row {
+        max-width: 920px;
+    }
+    .scttl {
+        font-weight: bold;
+        margin-bottom: 1em;
+        @include media(660px) {
+            @include font-size(12);
+            text-align: center;
+        }
+    }
+    .ctflist {
+        margin-left: 2em;
+        @include media(660px) {
+            margin-left: 1em;
+        }
+        li {
+            @include font-size(12);
+            list-style: circle;
+            padding: .2em 0;
+            @include media(660px) {
+                @include font-size(10);
+            }
+            img {
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+
+/*-- mailform --*/
+
+.form_wrapper {
+    padding: 50px 0;
+    @include media(979px) {
+        font-size: 16px;
+    }
+    .form_fix {
+        padding: 0;
+    }
+}
+.form_outer__ttl {
+    border-bottom: 5px solid #eee;
+    margin-bottom: 1em;
+    padding-bottom: .5em;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.form_outer__column {
+    padding-bottom: 2em;
+}
+
+#contactform {
+    input[type="text"],input[type="email"],input[type="tel"],textarea,select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        -o-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        font-size: 18px;
+        background: #fff;
+        padding: .8em 1em;
+        border: 2px solid #ddd;
+        color: #333;
+        box-shadow: none;
+        border-radius: 5px;
+        resize: none;
+        box-sizing: border-box;
+        @include media(979px) {
+            font-size: 16px;
+        }
+        &::-webkit-input-placeholder{
+            color: #ccc;
+            font-size: 14px;
+        }
+        &::-moz-placeholder{
+            color: #ccc;
+        }
+        &:-ms-input-placeholder {
+            color: #ccc;
+        }
+        &:focus {
+            border-color: $c1;
+            border-radius: 5px;
+            outline: none;
+        }
+    }
+    select {
+        padding-right: 2em;
+        @include media(600px) {
+            padding-right: 1em;
+        }
+    }
+    input[type="submit"] {
+        border-radius: 0;
+        -webkit-box-sizing: content-box;
+        -webkit-appearance: button;
+        appearance: button;
+        border: none;
+        &::-webkit-search-decoration {
+          display: none;
+        }
+        &::focus {
+          outline-offset: -2px;
+        }
+        display: inline-block;
+        padding: 1em 2em;
+        color: #FFF;
+        font-size:16px;
+        text-decoration: none;
+        cursor: pointer;
+        border:none;
+        background: $c1;
+        border-radius: 0;
+        transition: all 0.2s linear;
+        opacity: 1;
+        box-sizing: border-box;
+        outline: none;
+        &:hover {
+            background:darken($c1,5%);
+        }
+        &.mf_submit:disabled {
+            opacity: 0.4;
+            background: #ccc;
+        }
+    }
+    input[type='checkbox']{
+        filter: alpha(opacity=0);
+        -moz-opacity:0;
+        opacity:0;
+        position: absolute;
+    }
+    .chk_target {
+        background:url(../img/chk_btn.png) no-repeat left top;
+        background-size: 28px auto;
+        height: 28px;
+        width: 28px;
+        line-height: 28px;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+        &.c_on{
+            background-position:left bottom;
+        }
+    }
+    #accept,#accept2,#agreement{
+        position: relative;
+        display: block;
+        cursor: pointer;
+        line-height: 28px;
+        padding: 0;
+        margin-top: 1em;
+        .note {
+            @include media(660px) {
+                font-size: 16px;
+            }
+        }
+    }
+
+    select {
+        text-indent: 0.01px;
+        text-overflow: '';
+        &::-ms-expand {
+            display: none;
+        }
+    }
+    .imeoff {
+        ime-mode: inactive;
+    }
+    .imeon {
+        ime-mode:active;
+    }
+    .mf_mid {
+        width: 100%;
+    }
+    .mf_75 {
+        width: 75%;
+        @include media(660px) {
+            width: 100%;
+        }
+    }
+    .mf_sml {
+        width: 50%;
+        @include media(660px) {
+            width: 100%;
+        }
+    }
+    .mf_readonly {
+        color: $c1!important;
+        pointer-events : none;
+    }
+    .mf_capt {
+        width: 50%;
+    }
+    .capimg {
+        vertical-align: top;
+        padding: .7em .5em;
+        background: $c1;
+    }
+    .comment {
+        font-size: 12px;
+    }
+    .mf_textarea_tbl {
+        width: 100%;
+    }
+    .smp {
+        margin: 2em auto;
+        text-align: center;
+        position: relative;
+        &.active {
+            &::before {
+                display: block;
+            }
+        }
+        &::before {
+            content: '送信中です...';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            background-color: $c1;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 10;
+            transform: translate(-50%,-50%);
+            display: none;
+        }
+    }
+}
+
+
+#contactform {
+    .form_outer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        box-sizing: border-box;
+        @include media(767px) {
+            display: block;
+            padding-top: 15px;
+        }
+        &.singlenote {
+            padding: 1em 0 0 0;
+            margin-left: auto;
+            width: 70%;
+            color: $c1;
+            @include media(767px) {
+                width: 100%;
+                margin-left: 0;
+            }
+            .inner {
+                .note {
+                    padding-left: 40px;
+                    display: block;
+                    @include media(660px) {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+        .tbl_cel {
+            flex: 0 1 70%;
+            width: 70%;
+            padding: .5em 0;
+            @include media(960px) {
+                flex: 0 1 65%;
+                width: 65%;
+            }
+            @include media(767px) {
+                width: 100%;
+                padding-top: 0;
+            }
+            &.radio_wrapper {
+                padding-top: 1em;
+                padding-bottom: 1em;
+                &.storewrap {
+                    pointer-events : none;
+                @include media(480px) {
+                        .wpcf7-list-item {
+                            white-space: nowrap;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            &.file_wrapper {
+                padding-top: 1em;
+                padding-bottom: 1em;
+            }
+            &.flexcolumn {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: center;
+                .flexcolumnline {
+                    @include media(480px) {
+                        width: 100%;
+                        padding-bottom: 5px;
+                    }
+                }
+                .abnowrap {
+                    padding-top: 5px;
+                    width: 100%;
+                    font-size: 13px;
+                }
+                @include media(480px) {
+                    flex-wrap: wrap;
+                    overflow-x: scroll;
+                }
+            }
+        }
+        .heading {
+            flex: 0 1 30%;
+            width: 30%;
+            text-align: right;
+            box-sizing: border-box;
+            padding-right: 20px;
+            @include media(960px) {
+                flex: 0 1 35%;
+                width: 35%;
+            }
+            @include media(767px) {
+                width: 100%;
+                text-align: left;
+            }
+            &.required::after {
+                content: "必須";
+                font-size: 12px;
+                color: #fff;
+                background: #23AC38;
+                width: 50px;
+                display: inline-block;
+                box-sizing: border-box;
+                text-align: center;
+                letter-spacing: .5em;
+                text-indent: .5em;
+                border-radius: 3px;
+                white-space: nowrap;
+                line-height: 1;
+                padding: .5em 0;
+                margin-left: 1em;
+                @include media(767px) {
+                    font-size: 10px;
+                    width: 40px;
+                }
+            }
+            &.required:after {
+                content: "必須";
+            }
+            &.optional:after {
+                content: "任意";
+                background: #ccc;
+            }
+        }
+        .attention {
+            font-size: 12px;
+            color: $c1;
+            display: block;
+            padding-top: 5px;
+        }
+        .radio_wrapper .wpcf7-form-control-wrap {
+            label {
+                //cursor: pointer;
+                input[type="radio"] {
+                    display: none;
+                    &:checked + span {
+                        color: $c1;
+                        &::after{
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 3px;
+                            left: 5px;
+                            width: 14px;
+                            height: 14px;
+                            border-radius: 50%;
+                            background: $c1;
+                        }
+                    }
+                }
+                span {
+                    padding-left: 30px;
+                    position: relative;
+                    margin-right: 20px;
+                    line-height: 1;
+                    &::before{
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: -2px;
+                        left: 0;
+                        width: 20px;
+                        height: 20px;
+                        border: 2px solid #ddd;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            &.insurance {
+                display: block;
+                .wpcf7-list-item {
+                    padding: 5px 0;
+                    display: block;
+                    &.has-free-text {
+                        input[type="text"] {
+                            padding: .2em 1em;
+                        }
+                    }
+                }
+            }
+        }
+        .select_wrapper {
+            .select_txt {
+                padding-left: .5em;
+            }
+            &.inline {
+                padding-right: 10px;
+                .wpcf7-not-valid-tip {
+                    display: none;
+                }
+                @include media(480px) {
+                    width: auto;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .etc_form {
+            margin-top: 10px;
+            input[type="text"] {
+                padding: .2em 1em;
+            }
+        }
+        .select_wrapper .wpcf7-form-control-wrap {
+            position: relative;
+            &::before {
+                pointer-events: none;
+                position: absolute;
+                display: block;
+                width: 20px;
+                height: 24px;
+                right: 10px;
+                top: -2px;
+                font-family: 'FontAwesome';
+                content: '\f078';
+                text-rendering: auto;
+                color: $c1;
+                @include media(600px) {
+                    display: none;
+                }
+            }
+        }
+        .kome_txt {
+            font-size: 10px;
+            color: $c1;
+            vertical-align: super;
+        }
+        .inner_form__wrap {
+            padding-top: 10px;
+        }
+        .inner_form {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5px 0;
+            label {
+                padding-right: 10px;
+            }
+            .inner_form__inline {
+            }
+        }
+    }
+}
+
+
+/*--------
+__chkbox_nochk
+-----------------------------------------------*/
+#contactform {
+    .chkbox_nochk__wrapper {
+    }
+    .chkbox_nochk__wrapper .wpcf7-form-control-wrap {
+        label {
+            cursor: pointer;
+            input[type="checkbox"] {
+                display: none;
+                &:checked + span::before {
+                    width: 6px;
+                    height: 15px;
+                    top: 3px;
+                    left: 5px;
+                    transform: rotate(45deg);
+                    border-top-color: transparent;
+                    border-left-color: transparent;
+                    border-right-width: 2px;
+                    border-bottom-width: 2px;
+                    opacity: 1;
+                    border-right-color: $c1;
+                    border-bottom-color: $c1;
+                }
+            }
+            span {
+                cursor: pointer;
+                line-height: 30px;
+                height: 30px;
+                display: inline-block;
+                box-sizing: border-box;
+                padding: 0 1em 0 28px;
+                white-space: nowrap;
+                margin: .4em .5em .4em 0;
+                position: relative;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: .4em;
+                    left: 0;
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid #000;
+                    opacity: .3;
+                    transition: all 0.1s linear;
+                }
+            }
+        }
+        .wpcf7-list-item-label {
+            font-size: .85em;
+        }
+    }
+}
+
+
+
+
+
+
+
+/* overwrite wpcf7 */
+div.wpcf7 {
+    position: relative;
+}
+div.wpcf7 img.ajax-loader {
+    display: block;
+    margin: .5em auto 0 auto!important;
+}
+div.wpcf7-response-output {
+    position: relative;
+    bottom: -20px;
+    background: none;
+    border: none;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto!important;
+    color: #fff;
+    box-sizing: border-box;
+    background: $c1;
+    font-weight: bold;
+    line-height: 2;
+    @include media(600px) {
+        font-size: 12px;
+    }
+}
+div.wpcf7-mail-sent-ok,
+div.wpcf7-mail-sent-ng,
+div.wpcf7-spam-blocked,
+div.wpcf7-validation-errors {
+    border: none!important;
+}
+div.wpcf7-mail-sent-ok {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    transform: translate(-50%,-50%);
+    bottom: auto;
+    padding: 5vh 0;
+    background: rgba(#eee,0.85);
+    z-index: 20;
+    width: 60%;
+    border-radius: 20px;
+    color: $c1;
+}
+.wpcf7-not-valid {
+    border-color: $c1!important;
+    border-width: 2px!important;
+    background: lighten($c1,45%)!important;
+
+}
+span.wpcf7-not-valid-tip {
+    font-size: 12px!important;
+    background: transparent!important;
+    border: none!important;
+    color: red!important;
+    box-sizing: border-box!important;
+    padding: 0 10px!important;
+    display: block;
+}
+.screen-reader-response {
+    display: none;
+}
+.wpcf7-response-output {
+}
+.wpcf7-validation-errors {
+    display: block;
+}
+
+.innr_toggle {
+    margin-top: 10px;
+    padding: 20px;
+    background: #f6f6f6;
+    .innr_toggle__section {
+        padding-bottom: 1em;
+    }
+
+}
+.deliver_note {
+    padding-bottom: 1em;
+    color: #000;
+}
+.deliver_ariabutton {
+    margin-top: .5em;
+    a {
+        text-decoration: none;
+        display: inline-block;
+        box-sizing: border-box;
+        background: $c3;
+        color: #000;
+        line-height: 1;
+        padding: .5em 1em;
+        border-radius: 5px;
+        text-align: center;
+        transition: all .1s linear;
+        cursor: pointer;
+        &:hover {
+            background: darken($c3,5%);
+        }
+    }
+    i {
+        padding-left: .5em;
+    }
+}
+
+
+
+.wpcf7-spinner {
+    display: none!important;
+}
+

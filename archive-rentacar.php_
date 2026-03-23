@@ -1,0 +1,289 @@
+<?php get_header();?>
+
+
+
+<div class="rent_archive__wrap">
+    <div class="rent_archive__head">
+        <div class="l_1">
+            <div class="rent_archive__img">
+                <a href="<?php echo home_url('/'); ?>rentacar_delivery.html"><img src="<?php bloginfo('template_url'); ?>/assets/img/ren_bn007.jpg?20200606" alt="使いたい時、使いたい時間だけ利用ＯＫ！"></a>
+                <p class="fz_16 fw700 des">中古車販売のパイオニア「カーライフグループ」が手がけるレンタカー!ちょっとした利用に使える小型車から引越しなどに使えるトラック・貨物、その上短時間の利用ではなかなか無い重機まで揃えました！</p>
+                <h2 class="fz_36 l_1 rent_archive__ttl"><img src="<?php bloginfo('template_url'); ?>/assets/img/ren_bn008.jpg" alt="レンタカー"></h2>
+                <div class="imgwrap">
+                    <p><img src="<?php bloginfo('template_url'); ?>/assets/img/ren_bn005.png" alt="使いたい時、使いたい時間だけ利用ＯＫ！"></p>
+                    <p><img src="<?php bloginfo('template_url'); ?>/assets/img/ren_bn006.png" alt="使いたい時、使いたい時間だけ利用ＯＫ！"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+    $term_obj = get_term_by('slug', 'etc', 'rentacar_cat');
+    $args = array(
+        'taxonomy' => 'rentacar_cat',
+        'orderby' => 'menu_order',
+        'exclude' => $term_obj->term_id,
+        'hide_empty' => true,
+    );
+    $terms = get_terms($args);
+    ?>
+    <?php if($terms):?>
+        <ul class="fz_16 rent_archive__nav">
+            <?php foreach($terms as $term) :?>
+                <li><a href="#<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php foreach($terms as $term) :?>
+            <?php
+            $args = array(
+                'post_type'=> 'rentacar',
+                'post_status'=> 'publish',
+                'ignore_sticky_posts'=> 1,
+                'orderby'=> 'modified',
+                'posts_per_page'=> -1,
+                'order' => 'DESC',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'rentacar_cat',
+                        'field' => 'slug',
+                        'terms' => $term->slug,
+                    ),
+                ),
+                'meta_query' =>
+                array(
+                    array(
+                        'key'=>'rentacars_status',
+                        'value'=> 'on',
+                        'compare' => 'IN',
+                    )
+                )
+            );
+            $rentacar = get_posts( $args );
+            ?>
+            <?php if($rentacar) :?>
+                <section class="rent_archive__cat" id="<?php echo $term->slug; ?>">
+                    <div class="rent_archive__ttlwrap">
+                        <div class="l_1 car_list__wrap">
+                            <h2 class="fz_18 rent_archive__catttl"><span><?php echo $term->name; ?></span></h2>
+                        </div>
+                    </div>
+                    <div class="flex carlist l_1 car_list__wrap">
+                        <?php foreach($rentacar as $post) :
+                            setup_postdata( $post );
+                            ?>
+                            <?php get_template_part( '_md_remtacars__post' ); ?>
+                        <?php endforeach;
+                        wp_reset_postdata(); ?>
+                    </div>
+                </section>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <?php endif; ?><!-- if($terms) -->
+
+
+        <div class="l_1 l_side_25 rent_archive__head">
+            <div class="rent_archive__headWrap">
+                <section class="rent_archive__headCont wide">
+                    <div class="innr">
+                        <h2 class="fz_20 rent_archive__headTtl"><span>ご予約・営業時間</span><p class="en">（Rersevation/Business hours）</p></h2>
+                        <div class="txtwrap">
+                            <div class="business_hour">
+                                <p class="fz_18 fw700 httl">営業時間：</p>
+                                <div class="fz_18 fw700 hcont">
+                                    <p>平日 10:00〜18:00<br>土日 9:00〜19:00</p>
+                                    <p class="fz_13">※AM9:00、PM19:00の貸出・返却は事前予約が必要となります。（現在福岡店のみ）</p>
+                                    <p class="en">Weekday：Open 10:00 AM〜Close 18:00 PM<br>Saturday and Sunday：Open 9:00 AM〜Close 19:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="rent_archive__storeInfo">
+                                <div class="fz_16 store">
+                                    <div class="store_innr">
+                                        <h3 class="fz_18 rent_archive__storettl"><span class="en">Carlife Fukuoka</span><strong class="fw700">カーライフ福岡店</strong></h3>
+                                        <p class="rent_archive__address">福岡県糟屋郡粕屋町大字戸原789番地4<span class="en">Fukuoka Kasuya-gun Kasuya-machi Tobara 789-4</span></p>
+                                        <p>定休日：年中無休 (但しお盆、年末年始を除く)</p>
+                                        <p class="fw700 contact">ご予約お問い合わせ：<?=$GLOBALS['shop_gloval_var']['fukuoka']['rentcar-']?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="fz_14 note">
+                                <!-- <li>ご予約は、原則 貸出希望日の1ヶ月前からのご予約とさせていただきます。</li> -->
+                                <li>お申込みフォームを送信いただいただけではご予約は完了しません。取扱店舗より確認の電話を差し上げますのでご予約を確定してください。<p class="en">It is not a reservation completion just sending  the application by e mail, We will make phone call about your reservation.</p></li>
+                                <li>車両は返却日の18:00までにお願い致します。18:00を過ぎると1日分の貸出料金をご請求致しますのでご了承ください。<p class="en">You have to return the car before 18:00 pm, If you returned the car after 18:00 pm ,it will charge 1 day rental fee.</p></li>
+                                <li>
+                                    レンタカー予約取消手数料<span class="en">About cancellation fee</span><br>出発日の7日前 無料<span class="en">7days before  departure date free</span>出発日の6日〜3日前 基本料金の20%<span class="en">6 to 3days before departure date 20%.</span>出発日の2日〜前日 基本料金の30%<span class="en">2days before departure date 30%.</span>出発日の当日 基本料金の50%<span class="en">On the day of departure 50%.</span></li>
+                                    <li>走行距離制限<br>24時間=300km以内<br>14日~30日間まで=3000km以内<br>走行距離制限を越えての走行の場合10円/kmの追加料金をご請求致します。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rent_archive__headCont">
+                        <div class="innr">
+                            <h2 class="fz_20 rent_archive__headTtl"><span>お持ちいただく書類</span><p class="en">（Bring Documents/ID）</p></h2>
+                            <div class="txtwrap">
+                                <ul class="list">
+                                    <li>免許証（特殊車輌の場合は資格証など）<p class="en">Valid Japanese drivers license or International drivers license</p></li>
+                                    <li>本人確認書類（公的身分証明※）<p class="fz_13 fw400">※マイナンバーカード・住基カード・健康保険証など</p></li>
+                                    <li>パスポート<span class="en_inline">（passport)</span></li>
+                                    <li>在留カード<span class="en_inline">（Immigration card ）</span></li>
+                                    <li>保険証<span class="en_inline">（Iusurance card）</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rent_archive__headCont">
+                        <div class="innr">
+                            <h2 class="fz_20 rent_archive__headTtl"><span>ハイシーズンの料金</span><p class="en">（Peak season charges）</p></h2>
+                            <div class="fz_14 rent_archive__chargeTable">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>適用期間</th>
+                                            <th>24時間</th>
+                                            <th>1週間</th>
+                                            <th>1ヶ月</th>
+                                        </tr>
+                                        <tr>
+                                            <td>ゴールデンウィーク<br>4/25〜5/6</td>
+                                            <td class="price" rowspan="3">通常料金<br>+<br>550円(税込)</td>
+                                            <td class="price" rowspan="3">通常料金<br>+<br>2,200円(税込)</td>
+                                            <td class="price" rowspan="3">通常料金</td>
+                                        </tr>
+                                        <tr>
+                                            <td>夏季<br>7/25〜8/25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>年末年始<br>12/24〜1/4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="fz_14 txtwrap">
+                                <p>お貸し出し日が期間内の場合はハイシーズン料金が適用となります。詳しくは各店舗までお問い合わせください。</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rent_archive__headCont">
+                        <div class="innr">
+                            <h2 class="fz_20 rent_archive__headTtl"><span>お支払い方法</span><p class="en">（Payment method）</p></h2>
+                            <div class="txtwrap">
+                                <ul class="list">
+                                    <li>振込 <span class="en_inline">Transfer</span></li>
+                                    <li>現金 <span class="en_inline">Cash</span></li>
+                                    <li>クレジットカード <span class="en_inline">Credit Card</span></li>
+                                    <li>電子マネー決済 <span class="en_inline">Electric money settlement</span><br>PayPay</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rent_archive__headCont">
+                        <div class="innr">
+                            <h2 class="fz_20 rent_archive__headTtl"><span>オプション</span><p class="en">（Other lending）</p></h2>
+                            <div class="txtwrap">
+                                <ul class="list">
+                                    <li>レンタル チャイルドシート １日220円(税込)<p class="en">Child sheet(infant) 220yen(in tax) per day.</p></li>
+                                    <li>レンタル ジュニアシート １日220円(税込)<p class="en">Jr sheet(3 ~10 years old)220yen(in tax) per day.</p></li>
+                                    <li>レンタル 車椅子 1日220円(税込)<p class="en">Wheel chair 220yen(in tax) per day.</p></li>
+                                </ul>
+                                <p class="fz_13">※数に限りがございますのでご利用の際はお問い合わせください。<p class="en" style="margin-bottom: 1em">※Please ask about other lending.</p></p>
+                                <p class="fz_13">道路交通法により、6歳未満の幼児を乗車させる場合には、幼児用補助装置（チャイルドシート）の使用が運転者に義務づけられています。レンタカーご利用の際も必ず装着いただく必要がございます。チャイルドシートの装着は、運転者の責任となります。<p class="en" style="margin-bottom: 1em">Under the traffic act ,Children under 6years must be used child sheet.</p></p>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rent_archive__headCont wide">
+                        <div class="innr">
+                            <h2 class="fz_20 rent_archive__headTtl"><span>サービス</span><p class="en">（Service）</p></h2>
+                            <div class="txtwrap">
+                                <ul class="list">
+                                    <li>全車除菌消臭済み（ウイルス対策  返却時･貸出前）</li>
+                                    <li>
+                                        <p>最寄り駅までの無料送迎または配達について<span class="en">About free delivery and transfer</span>(取扱店舗の最寄りの駅(バス停)まで送迎致します。)<span class="en">We will free transfer to the nearest station or bus stop</span></p>
+                                        <div class="rent_archive__storeInfo">
+                                           <div class="fz_16 store">
+                                                <div class="store_innr">
+                                                    <p style="margin-bottom: 1em"><strong class="fw700">カーライフ福岡店</strong></p>
+                                                    <p style="margin: 1em 0">＊福岡空港<br>＊博多駅<br>＊地下鉄貝塚駅</p>
+                                                    <p class="en" style="margin: 1em 0">free delivery at<br>＊Fukuoka Airport<br>＊Hakata Station<br>＊Kaizuka Subway</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="fz_14" style="font-weight: normal;margin-top: 1em">ただし3日前までに、事前にご予約頂いた方のみとさせて頂きます。詳しくはご予約車両の取扱店舗までご確認ください。<br>（無料宅配サービス対象車のみ）</p>
+                                        <p class="fz_14" style="font-weight: normal;margin-top: 1em">レンタカーをご利用中の間、自家用車を店舗に駐車頂けます。ただし駐車スペースの関係上、制限がございますので必ず店舗にご確認ください。<br>尚、駐車中に生じた損害につきましては補償できませんのであらかじめご了承ください。</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="rent_archive__headCont wide">
+                        <div class="innr">
+                            <h2 class="fz_20 rent_archive__headTtl"><span>宅配レンタカー</span><p class="en">（Rental car Delivery Service）</p></h2>
+                            <div class="txtwrap">
+                                <p class="fz_15">宅配サービスとは、お客様のご自宅やご希望の場所までレンタカーを納車・引取りするサービスです。<!-- （※対応エリア内限定 約15km以内）カーライフ福岡レンタカーの店舗までお越しになれない場合や、空港・新幹線の駅などお客様のご指定の場所に格安レンタカーを宅配いたします。 -->
+                                    <p class="en">It is service to deliver and take back to your home or desired location (Fukuoka shop only)</p></p>
+                                    <!-- <p class="fz_15">※宅配料金が別途かかります。</p> -->
+
+                        <!-- <h3 class="fz_16 fw700 list_ttl">無料対応エリア</h3>
+                        <ul class="fz_15 list">
+                            <li>地下鉄貝塚駅</li>
+                            <li>JR原町駅</li>
+                            <li>西鉄バス長者原バス停</li>
+                            <li>福岡空港</li>
+                            <li>博多駅</li>
+                        </ul> -->
+                        <div class="fz_14 fw700 link_btn">
+                            <a href="<?php echo home_url('/'); ?>rentacar_delivery.html">宅配サービスを詳しくみる<p class="en" style="margin-top: .5em;">About rental car delivery services</p></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="rent_archive__headCont wide">
+                <div class="innr res">
+                    <h2 class="fz_20 rent_archive__headTtl"><span>保険・補償について</span><p class="en">（Insurance .About compensation）</p></h2>
+                    <div class="txtwrap">
+                        <h3 class="fz_16 rent_archive__headSubttl"><span>基本の補償</span><p class="en">Basic Compensation</p></h3>
+                        <p class="fz_15 fw700 read">万一ご利用中に事故が発生した場合に補償限度額の範囲で補償されます。<span class="en">If an accident occurs during use, it will be compensated with range of compensation amount.</span></p>
+                        <div class="rent_archive__headinsulance">
+                            <div class="column">
+                                <h4 class="fz_20 columnTtl"><span>対人補償<span class="en">Objective compensation</span><em>1名につき無制限</em><span class="en">Unlimited per person</span></span></h4>
+                                <p class="fz_14 columnRead">（自賠責保険の補償額含む）<span class="en">（Includes compensation for liability insurance）</span></p>
+                            </div>
+                            <div class="column">
+                                <h4 class="fz_20 columnTtl"><span>対物補償<span class="en">Inter personal</span><em>1事故につき無制限</em><span class="en">1 unlimited per accident</span></span></h4>
+                                <p class="fz_14 columnRead">（自己負担額(免責額)3万円）<span class="en">(self pay amount(Disclaimer)30.000yen)</span></p>
+                            </div>
+                            <div class="column">
+                                <h4 class="fz_20 columnTtl"><span>人身傷害補償<span class="en">Personal injury compensation</span><em>1名につき3,000万円まで</em><span class="en">Up to 3.000 million yen per person</span></span></h4>
+                            </div>
+                            <div class="column full">
+                                <h4 class="fz_16 columnTtl"><span>レッカー手配などのロードサービスがご利用いただけます。</span><p class="en">Services such as wrecker arrangements</p></h4>
+                                <ul class="fz_13 columnList">
+                                    <li>レッカーけん引 （普通乗用車の場合、約180km ）<p class="en">Wrecker tow（Ordinary car,　about 180km)</p></li>
+                                    <li>応急処置 （1事故につき15万円程度）<p class="en">First Aid, about 150.000yen per 1 accident</p>
+                                        バッテリー上がり時のジャンピング<p class="en">Jumping when the battery is up</p>
+                                        キー閉じこみ時の鍵開け<p class="en">Key clear  when key closed</p>
+                                        パンク時のスペアタイヤ交換 など<p class="en">Tire change at puncture</p>
+                                    </li>
+                                    <li>燃料切れ時の給油サービス（1回につき最大10リットルまで無料）<p class="en">Out of fuel services (Up to 10liters at a tire)</p></li>
+                                </ul>
+                            </div>
+                            <div class="column full">
+                                <h4 class="fz_16 columnTtl"><span>保険・補償制度が適応されない場合</span><p class="en">If the insurance completion  system is not applied</p></h4>
+                                <ul class="fz_13 columnList">
+                                    <li>警察に事故の届出を実施しなかった場合（事故証明がない場合）<p class="en">If you did not report an accident to the police.</p></li>
+                                    <li>出発時にお申し出いただいた方以外の方が運転して起こした事故<p class="en">When the driver who applied unexpectedly at the time of departure drove</p></li>
+                                    <li>無免許運転による事故 酒気帯び運転による事故<p class="en">Accident due to unlicensed driving</p></li>
+                                    <li>借受期間を無断で延滞して使用された場合の事故<p class="en">Accidents outside the rental period</p></li>
+                                    <li>その他貸渡約款に掲げる事項に違反があった場合など<p class="en">When there is a violation in the matters mentioned in other terms etc</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+<?php get_footer(); ?>

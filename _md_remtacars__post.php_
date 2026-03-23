@@ -1,0 +1,86 @@
+<article class="car_post__article rentacar fz_12">
+    <?php
+    $rentacar_img__group = get_field('rentacar_img__group');
+    if( $rentacar_img__group ): ?>
+    <a href="<?php the_permalink(); ?>" class="car_post__link">
+    <?php
+            $img_value = 'rentacar_img1' ;
+            $car_title = get_the_title();
+            if ( $rentacar_img__group[$img_value] ) {
+                $attachment_id = $rentacar_img__group[$img_value];
+                echo '<figure class="car_img">';
+                echo wp_get_attachment_image( $attachment_id, "original_thumb_34", false, array( 'class'=>'cars_img__lrg desktop', 'alt'=>$car_title ));
+                echo '</figure>';
+            }
+    ?>
+    </a>
+    <?php endif; ?>
+    <div class="car_detail05">
+        <h3 class="fz_18 car_detail__ttl"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+    </div>
+    <div class="car_detail06">
+        <?php
+          $cars_store = get_field_object('rentacars_store');
+          $cars_store__value = $cars_store['value'];
+          $cars_store__label = $cars_store['choices'][ $cars_store__value ];
+          if( $cars_store__value ):
+        ?>
+        <?php
+          if($cars_store__value === '1' ) {
+            echo '<div class="c_l store_fukuoka"><p class="store_color fukuoka">' . esc_attr( $cars_store__label ) . '</p>';
+          } elseif($cars_store__value === '2') {
+            echo '<div class="c_l store_osaka"><p class="store_color osaka">' . esc_attr( $cars_store__label ) . '</p>';
+          } elseif($cars_store__value === '3' ) {
+            echo '<div class="c_l store_tokyo"><p class="store_color tokyo">' . esc_attr( $cars_store__label ) . '</p>';
+          }
+        ?>
+        <?php endif; ?>
+        </div>
+
+        <?php
+            $rentacar_price__group = get_field('rentacar_price__group');
+            $rentacars_timeprice = $rentacar_price__group['rentacars_timeprice'];
+            $rentacars_dayprice = $rentacar_price__group['rentacars_dayprice'];
+            $rentacars_weeklyprice = $rentacar_price__group['rentacars_weeklyprice'];
+            $rentacars_monthlyprice = $rentacar_price__group['rentacars_monthlyprice'];
+            $rentacars_insprice = $rentacar_price__group['rentacars_insprice'];
+            if( $rentacar_price__group ):?>
+            <div class="rent_annualPrice">
+                <div class="wrap">
+                    <?php if( $rentacars_timeprice ):?>
+                        <h4 class="fz_30 timely_price"><?php echo number_format($rentacars_timeprice); ?><span>円(税込)/ 時間</span></h4>
+                    <?php endif; ?>
+                    <?php if( $rentacars_dayprice ):?>
+                        <p class="fz_15 dairy_price"><span><?php echo number_format($rentacars_dayprice); ?></span>円(税込)/ 24時間</p>
+                    <?php endif; ?>
+                </div>
+            <?php if( $rentacars_weeklyprice ) {
+                echo '<p class="fz_15 weekly_price"><span>' . number_format($rentacars_weeklyprice) . '</span>円(税込)/ 1週間</p>';
+            } else {
+                if( $rentacars_dayprice ) {
+                    $weekly_price = (($rentacars_dayprice * 7) * 0.8);
+                    echo '<p class="fz_15 weekly_price"><span>' . number_format($weekly_price) . '</span>円(税込)/ 1週間</p>';
+                }
+            }
+            ?>
+            <?php if( $rentacars_monthlyprice ) {
+                echo '<p class="fz_15 weekly_price"><span>' . number_format($rentacars_monthlyprice) . '</span>円(税込)/ 1ヶ月</p>';
+            } else {
+                if( $rentacars_dayprice ) {
+                    $monthly_price = (($rentacars_dayprice * 30) * 0.5);
+                    echo '<p class="fz_15 weekly_price"><span>' . number_format($monthly_price) . '</span>円(税込)/ 1ヶ月</p>';
+                }
+            }
+            ?>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="car_detail07">
+        <?php if(get_field('rentacars_salespoint')): ?>
+        <p class="car_text">
+            <?php echo mb_strimwidth(strip_tags(get_field('rentacars_salespoint')),0,120,'…');?>
+        </p>
+        <?php endif; ?>
+        <a href="<?php the_permalink(); ?>" class="btn_more">詳しく見る</a>
+    </div>
+</article>

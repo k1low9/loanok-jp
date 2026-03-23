@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/*-----------------------------------------------
+--color
+-----------------------------------------------*/
+/*-----------------------------------------------
+--footer
+-----------------------------------------------*/
+.brif_company .linkarea {
+  margin-top: 10px;
+  /* LINE@　友だちボタン*/
+}
+
+.brif_company .linkarea li {
+  width: 49%;
+  margin-bottom: 10px;
+}
+
+.brif_company .linkarea .store {
+  border: 1px solid #fff;
+  border-radius: 3px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.brif_company .linkarea #line_atto a {
+  background: #25af00;
+  font-size: 90%;
+  position: relative;
+  display: block;
+  padding: 9px;
+  color: #fff;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 41px;
+}
+
+.brif_company .linkarea #line_atto a:hover {
+  opacity: 0.8;
+}
+
+/*# sourceMappingURL=../maps/parts/ozeki180221.css.map */

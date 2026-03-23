@@ -1,0 +1,131 @@
+@charset "utf-8";
+@import "../core/_mixin.scss";
+@import "../base/_base_setting";
+
+/*-----------------------------------------------
+ --footer
+-----------------------------------------------*/
+
+.footerpc{
+    margin:40px auto 40px;
+}
+.ban_area{
+    p{
+        width:80%;
+        height:200px;
+        text-align: center;
+        color:#fff;
+        line-height: 200px;
+        background:#999;
+        margin:40px auto;
+        @include media(767px) {
+            width:95%;
+            height:100px;
+            line-height: 100px;
+            margin:20px auto;
+        }
+    }
+}
+.brif_company{
+    padding: 0 2.5%;
+    .innr {
+        border:5px solid rgba(255,255,255,0.5);
+        padding:20px 40px;
+        box-sizing: border-box;
+        color:#fff;
+        @include media(767px) {
+            padding:20px 10px;
+            margin:0 auto;
+        }
+    }
+    h1{
+        margin:0 0 20px;
+        @include media(767px) {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+    h2{
+        margin:0 0 10px;
+    }
+    a{
+        color:#fff;
+        text-decoration: none;
+    }
+    .flexbox{
+        width:30%;
+        @include media(767px) {
+            width:100%;
+            margin-bottom:20px;
+            &:last-of-type{
+                margin-bottom:0px;
+            }
+        }
+    }
+    .linkarea{
+        margin-top:10px;
+        /* LINE@　友だちボタン*/
+    }
+}
+.copy{
+    color:#fff;
+    text-align: center;
+    margin:40px auto 20px;
+    a {
+        text-decoration: none;
+        color: #eee;
+        margin-left: 1em;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 20px;
+    }
+}
+
+.brif_company{
+    .linkarea{
+        margin-top:10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        li{
+            width:49%;
+            margin-bottom:10px;
+        }
+        .store{
+            border:1px solid #fff;
+            border-radius: 3px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        /* LINE@　友だちボタン*/
+        #line_atto a {
+            background:#25af00;
+            font-size:90%;
+            position:relative;
+            display:block;
+            padding:9px;
+            color:#fff;
+            border-radius:3px;
+            text-align:center;
+            text-decoration: none;
+            width:100%;
+            box-sizing: border-box;
+            height:41px;
+            font-size: 12px;
+            white-space: nowrap;
+            @include media(1200px) {
+                font-size: 1.2vw;
+            }
+            @include media(767px) {
+                font-size: 14px;
+            }
+        }
+        #line_atto a:hover {
+            opacity: 0.8;
+        }
+    }
+}
