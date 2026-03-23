@@ -222,7 +222,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="priority_4th"><a href="<?php echo home_url('/'); ?>privacypolicy.html">個人情報保護方針</a></li>
                         <li class="priority_4th"><a href="<?php echo home_url('/'); ?>purchaseform.html">買い取りフォーム</a></li>
                         <li class="priority_3rd"><a href="<?php echo home_url('/'); ?>soldout.html">販売実績</a></li>
                         <li class="priority_2nd"><a href="<?php echo home_url('/'); ?>shop000.html">店舗情報</a></li>
