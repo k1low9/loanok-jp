@@ -11,12 +11,12 @@
 
     <div class="mainslide">
         <ul class="slider">
-            <li><a href="/jimnys"><img src="<?php bloginfo('template_url'); ?>/assets/img/heros/gadvance.png?20251010" alt="jimnny LITTLE G.ADVANCEコンプリートカー予約販売開始!!"></a></li>
-            <li><a href="/jimnys"><img src="<?php bloginfo('template_url'); ?>/assets/img/heros/typeb.jpg?20250408" alt="jimnnyコンプリートカー予約販売開始!!"></a></li>
-            <li><a href="/jimnys"><img src="<?php bloginfo('template_url'); ?>/assets/img/heros/typeg.jpg" alt="jimnnyコンプリートカー予約販売開始!!"></a></li>
             <li><img src="<?php bloginfo('template_url'); ?>/assets/img/mv_1.jpg" alt="お客様の「買いたい」を「買える」に他社でローンが通らない、総量規制、債務整理、自己破産諦めないで"></li>
             <li><img src="<?php bloginfo('template_url'); ?>/assets/img/mv_2.jpg" alt="全車保証付き販売だから安心！軽自動車から輸入車まで全国どこでも納車出来ます!"></li>
             <li><img src="<?php bloginfo('template_url'); ?>/assets/img/mv_3.jpg?20241023" alt="自己破産、債務整理、金融事故カーライフグループなら100％購入OK！"></li>
+            <li><a href="/jimnys"><img src="<?php bloginfo('template_url'); ?>/assets/img/heros/gadvance.png?20251010" alt="jimnny LITTLE G.ADVANCEコンプリートカー予約販売開始!!"></a></li>
+            <li><a href="/jimnys"><img src="<?php bloginfo('template_url'); ?>/assets/img/heros/typeb.jpg?20250408" alt="jimnnyコンプリートカー予約販売開始!!"></a></li>
+            <li><a href="/jimnys"><img src="<?php bloginfo('template_url'); ?>/assets/img/heros/typeg.jpg" alt="jimnnyコンプリートカー予約販売開始!!"></a></li>
         </ul>
     </div>
 
@@ -197,8 +197,8 @@
             </div>
         </div>
         <div class="tw-container tw-text-center tw-mb-20">
-                <button onclick="location.href='https://loanok.jp/manufacturer.html'" class="tw-text-2xl tw-font-bold tw-bg-lime-500 hover:tw-bg-lime-700 tw-text-white tw-py-4 tw-px-10 lg:tw-px-60 tw-rounded-full">メーカーで探す→</button>
-            </div>
+            <button onclick="location.href='https://loanok.jp/manufacturer.html'" class="tw-text-2xl tw-font-bold tw-bg-lime-500 hover:tw-bg-lime-700 tw-text-white tw-py-4 tw-px-10 lg:tw-px-60 tw-rounded-full">メーカーで探す→</button>
+        </div>
 
     </div>
 
